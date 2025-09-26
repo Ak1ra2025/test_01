@@ -1,0 +1,188 @@
+:root {
+  --bg: #ffffff;
+  --panel: #f6f7f9;
+  --text: #0b0c0f;
+  --muted: #6b7280;
+  --primary: #2563eb;
+  --primary-contrast: #ffffff;
+  --border: #e5e7eb;
+  --accent: #10b981;
+  --danger: #ef4444;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0b0c0f;
+    --panel: #12151a;
+    --text: #e5e7eb;
+    --muted: #9aa0aa;
+    --primary: #3b82f6;
+    --primary-contrast: #0b0c0f;
+    --border: #1f2430;
+    --accent: #22c55e;
+    --danger: #f87171;
+  }
+}
+
+[data-theme="light"] {
+  --bg: #ffffff;
+  --panel: #f6f7f9;
+  --text: #0b0c0f;
+  --muted: #6b7280;
+  --primary: #2563eb;
+  --primary-contrast: #ffffff;
+  --border: #e5e7eb;
+  --accent: #10b981;
+  --danger: #ef4444;
+}
+
+[data-theme="dark"] {
+  --bg: #0b0c0f;
+  --panel: #12151a;
+  --text: #e5e7eb;
+  --muted: #9aa0aa;
+  --primary: #3b82f6;
+  --primary-contrast: #0b0c0f;
+  --border: #1f2430;
+  --accent: #22c55e;
+  --danger: #f87171;
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Noto Sans JP, Helvetica, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px clamp(16px, 4vw, 28px);
+  border-bottom: 1px solid var(--border);
+  background: var(--panel);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.app-title { margin: 0; font-size: 22px; font-weight: 700; }
+.icon-button {
+  appearance: none;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 8px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.controls { padding: 16px clamp(16px, 4vw, 28px); }
+.add-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.toolbar {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 12px;
+  align-items: center;
+}
+
+.filters { display: inline-flex; gap: 8px; }
+.filters .filter {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: var(--text);
+  cursor: pointer;
+}
+.filters .filter.is-active { outline: 2px solid var(--primary); }
+
+.search-sort { display: inline-flex; gap: 8px; }
+.bulk-actions { display: inline-flex; gap: 8px; }
+
+.text, .select, button {
+  font: inherit;
+}
+
+.text, .select {
+  width: 100%;
+  padding: 10px 12px;
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+button.primary {
+  background: var(--primary);
+  color: var(--primary-contrast);
+  border: none;
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button.secondary {
+  background: var(--panel);
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+main { padding: 0 clamp(16px, 4vw, 28px) 24px; }
+.todo-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.todo-item {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+.todo-item.completed .title { text-decoration: line-through; color: var(--muted); }
+.todo-item .notes { color: var(--muted); font-size: 0.9em; }
+
+.todo-item .actions { display: inline-flex; gap: 8px; }
+.todo-item .actions .delete { color: var(--danger); border-color: color-mix(in oklab, var(--danger) 40%, var(--border)); }
+.todo-item .actions .edit { color: var(--primary); border-color: color-mix(in oklab, var(--primary) 40%, var(--border)); }
+
+.editor { display: grid; grid-template-columns: 1fr; gap: 8px; width: 100%; }
+.editor .row { display: grid; grid-template-columns: 1fr; gap: 8px; }
+.editor .row.two { grid-template-columns: 1fr 1fr; }
+.editor textarea { resize: vertical; min-height: 60px; }
+.editor .buttons { display: inline-flex; gap: 8px; justify-content: flex-end; }
+
+.statusbar {
+  padding: 12px clamp(16px, 4vw, 28px) 24px;
+  color: var(--muted);
+}
+
+@media (max-width: 720px) {
+  .add-form { grid-template-columns: 1fr auto; }
+  #newNotes { grid-column: 1 / -1; }
+  .toolbar { grid-template-columns: 1fr; }
+}
+
