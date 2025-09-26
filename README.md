@@ -40,3 +40,18 @@ npx serve .
 
 ## ライセンス
 MIT
+
+## GitHub Pages で公開する
+このリポジトリは GitHub Pages へ自動デプロイできる設定を含みます。
+
+### 手順
+1. リポジトリを GitHub に作成し、このプロジェクトを push。
+2. GitHub のリポジトリ設定で Pages を有効化:
+   - Settings → Pages → Build and deployment
+   - Source: GitHub Actions を選択
+3. `main` ブランチに push すると、Actions が動き自動で公開されます。
+4. 公開URLは Actions 実行ログ、または Settings → Pages に表示されます。
+
+メモ:
+- ルート直下に `.nojekyll` を配置しているため、`_` から始まるパスもそのまま配信されます。
+- 静的サイトのためビルド工程は不要です。ビルドが必要な場合は `.github/workflows/pages.yml` の build ジョブに追加してください。
