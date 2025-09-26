@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TODOアプリ</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <h1 class="app-title">TODO</h1>
+      <button id="themeToggle" class="icon-button" aria-label="ダークモード切替" title="テーマ切替">🌓</button>
+    </header>
+
+    <section class="controls">
+      <form id="addForm" class="add-form" autocomplete="off">
+        <input id="newTitle" type="text" class="text" placeholder="タスクを入力…" required />
+        <input id="newNotes" type="text" class="text" placeholder="メモ（任意）" />
+        <button type="submit" class="primary">追加</button>
+      </form>
+
+      <div class="toolbar">
+        <div class="filters" role="group" aria-label="フィルター">
+          <button data-filter="all" class="filter is-active" aria-pressed="true">すべて</button>
+          <button data-filter="active" class="filter" aria-pressed="false">未完了</button>
+          <button data-filter="completed" class="filter" aria-pressed="false">完了</button>
+        </div>
+
+        <div class="search-sort">
+          <input id="search" type="search" class="text" placeholder="検索（タイトル・メモ）" />
+          <select id="sort" class="select" aria-label="並び替え">
+            <option value="updated_desc">更新日 新→旧</option>
+            <option value="created_desc">作成日 新→旧</option>
+            <option value="created_asc">作成日 旧→新</option>
+            <option value="title_asc">タイトル A→Z</option>
+            <option value="completed_first">完了を先頭</option>
+          </select>
+        </div>
+
+        <div class="bulk-actions">
+          <button id="toggleAll" class="secondary">すべて完了/解除</button>
+          <button id="clearCompleted" class="secondary">完了を削除</button>
+        </div>
+      </div>
+    </section>
+
+    <main>
+      <ul id="list" class="todo-list" aria-live="polite"></ul>
+    </main>
+
+    <footer class="statusbar">
+      <span id="count" aria-live="polite"></span>
+    </footer>
+
+    <script src="./app.js"></script>
+  </body>
+  </html>
+
